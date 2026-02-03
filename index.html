@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISSION: PROTOCOL</title>
+    <style>
+        :root { --marvel-red: #ED1D24; --marvel-black: #202020; --marvel-white: #FFFFFF; }
+        body { background-color: var(--marvel-black); color: var(--marvel-white); font-family: 'Arial Black', Gadget, sans-serif; display: flex; justify-content: center; padding: 20px; text-transform: uppercase; }
+        .terminal { width: 100%; max-width: 600px; border: 4px solid var(--marvel-red); padding: 20px; background: linear-gradient(145deg, #252525, #1a1a1a); box-shadow: 0 0 20px rgba(237, 29, 36, 0.3); }
+        h1 { background-color: var(--marvel-red); color: white; padding: 10px; text-align: center; font-size: 1.5rem; margin-top: 0; letter-spacing: 2px; }
+        .clue-section { border-left: 4px solid var(--marvel-red); margin-bottom: 25px; padding-left: 15px; display: none; transition: all 0.3s ease; }
+        .clue-section.active { display: block; animation: fadeIn 0.5s; }
+        .clue-section.completed { opacity: 0.4; border-left-color: #555; }
+        label { display: block; color: var(--marvel-red); margin-bottom: 5px; font-size: 0.8rem; font-weight: bold; }
+        p { font-size: 0.95rem; line-height: 1.5; margin: 10px 0; letter-spacing: 0.5px; }
+        input { background: #000; border: 2px solid var(--marvel-white); color: var(--marvel-white); padding: 12px; width: calc(100% - 28px); font-size: 1rem; outline: none; font-family: 'Courier New', monospace; }
+        input:focus { border-color: var(--marvel-red); box-shadow: 0 0 10px rgba(237, 29, 36, 0.5); }
+        input:disabled { border-color: #444; color: #888; cursor: not-allowed; }
+        button { background: var(--marvel-red); color: white; border: none; padding: 15px 20px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; font-family: inherit; font-size: 1.1rem; transition: background 0.2s; }
+        button:hover { background: #b31217; }
+        #final-reveal { display: none; background: var(--marvel-red); color: white; padding: 30px 20px; text-align: center; margin-top: 20px; border: 4px double white; animation: slideUp 0.6s; }
+        .secret-code { font-size: 2.2rem; display: block; margin: 20px 0; letter-spacing: 3px; border: 3px dashed white; padding: 15px; background: rgba(0,0,0,0.2); }
+        .status-msg { font-size: 0.75rem; color: #00ff00; margin-top: 8px; font-weight: bold; display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="terminal">
+    <h1>MISSION LOG</h1>
+
+    <div id="auth-section">
+        <label>ID VERIFICATION</label>
+        <p>Enter your Instagram Handle to initialize the hunt.</p>
+        <input type="text" id="username" placeholder="@USERNAME">
+        <button onclick="initHunt()">INITIALIZE MISSION</button>
+    </div>
+
+    <div id="game-area" style="display:none;">
+        <div class="clue-section" id="sec0"><label>CLUE 1</label><p>A potential celebrity has landed in town. Where would a star land first?</p><input type="text" id="in0" placeholder="ENTER CODE" oninput="validate(0)"><div class="status-msg" id="st0">ACCESS GRANTED</div></div>
+        
+        <div class="clue-section" id="sec1"><label>CLUE 2</label><p>You found traces of him but he is gone again. The tyres are burst. Where would they go to fix it?</p><input type="text" id="in1" placeholder="ENTER CODE" oninput="validate(1)"><div class="status-msg" id="st1">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec2"><label>CLUE 3</label><p>They abandoned the car and took another way out. Run to the stop and catch them.</p><input type="text" id="in2" placeholder="ENTER CODE" oninput="validate(2)"><div class="status-msg" id="st2">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec3"><label>CLUE 4</label><p>The bus just left. Find where you would go to shop for new cars.</p><input type="text" id="in3" placeholder="ENTER CODE" oninput="validate(3)"><div class="status-msg" id="st3">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec4"><label>CLUE 5</label><p>He loves his maple roast. Follow the smell.</p><input type="text" id="in4" placeholder="ENTER CODE" oninput="validate(4)"><div class="status-msg" id="st4">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec5"><label>CLUE 6</label><p>A beach towel and a surfboard in the back seat. Where would they be headed?</p><input type="text" id="in5" placeholder="ENTER CODE" oninput="validate(5)"><div class="status-msg" id="st5">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec6"><label>CLUE 7</label><p>The lifeguard mentions something about horses. Follow the trail.</p><input type="text" id="in6" placeholder="ENTER CODE" oninput="validate(6)"><div class="status-msg" id="st6">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec7"><label>CLUE 8</label><p>You find the stables but only yellow footprints and a tag left behind. Take the date and move fast.</p><input type="text" id="in7" placeholder="ENTER CODE" oninput="validate(7)"><div class="status-msg" id="st7">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec8"><label>CLUE 9</label><p>Bun left a note: "Let us get relaxed and hang out." Where do people go to unwind?</p><input type="text" id="in8" placeholder="ENTER CODE" oninput="validate(8)"><div class="status-msg" id="st8">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec9"><label>CLUE 10</label><p>Message in the mirror: "Wanna play a game? The mission is to play." Find the arena.</p><input type="text" id="in9" placeholder="ENTER CODE" oninput="validate(9)"><div class="status-msg" id="st9">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec10"><label>CLUE 11</label><p>He went shopping for snacks. Find him fast. Grab what he grabbed.</p><input type="text" id="in10" placeholder="ENTER CODE" oninput="validate(10)"><div class="status-msg" id="st10">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec11"><label>CLUE 12</label><p>His phone has no internet. Where would he go to get online?</p><input type="text" id="in11" placeholder="ENTER CODE" oninput="validate(11)"><div class="status-msg" id="st11">ACCESS GRANTED</div></div>
+
+        <div class="clue-section" id="sec12"><label>CLUE 13</label><p>They are heading to the final destination for 24 April. Find your way there.</p><input type="text" id="in12" placeholder="ENTER CODE" oninput="validate(12)"><div class="status-msg" id="st12">ACCESS GRANTED</div></div>
+    </div>
+
+    <div id="final-reveal">
+        MISSION ACCOMPLISHED<br>
+        AGENT <span id="user-display"></span>, YOUR UNIQUE CODE:<br>
+        <span class="secret-code" id="display-secret">########</span>
+        <p style="font-size: 0.75rem; border-top: 1px solid white; padding-top: 10px;">COMMENT THIS CODE ON OUR INSTAGRAM POST TO COMPLETE YOUR ENTRY.</p>
+    </div>
+</div>
+
+<script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzdP-RpdY3TNhYAUvtiZFXGsPMQoz-pGn0xoXXT9U-N4XE9tqXh92lWAJMkVWUZNkaH5g/exec";
+    
+    // Exact keys as per your instructions
+    const keys = [
+        "cx711", "unit4", "sl404", "bus m-901", "model no. a6", 
+        "maple88", "sunhorse", "21-07", "jordan 23", "reflect-7", 
+        "1723", "kim-47", "drg-19"
+    ];
+
+    const secretPool = [
+        "SL9K7R3X","SLX4P8Z2","SLM1Q9B6","SLT6W5J8","SLK8D2H9","SLB3S8L7","SLC7R6V4","SLY2K9T5","SLH6Q4Z3","SLR5B7N8",
+  "SLD9M2J1","SLF4T8K6","SLB7Z5H3","SLC2L3Q9","SLJ8P9V5","SLZ5W6R1","SLA3H8F2","SLN6X1B9","SLS4K7J5","SLC8W3D2",
+  "SLV2L9R7","SLQ6S5M4","SLD3Z2P8","SLH9R6T1","SLW1K4L5","SLR7J8S2","SLT4D3H9","SLZ8Q5V6","SLC2M7B3","SLF5W9Z4",
+  "SLX4T6K8","SLB9P2H7","SLJ6L9Q3","SLM2X5V8","SLZ8H7B4","SLQ5R1J6","SLN4D8K2","SLS7M3H9","SLW1Z6R5","SLK8L2Q7",
+  "SLF3P9T6","SLB7K5N2","SLM2R8Z6","SLZ5X3C7","SLA8M7S4","SLV4T9B1","SLS6D5W8","SLN9X8Q2","SLJ3Z2H5","SLB8R6X7",
+  "SLR5K7S9","SLW3Q4L2","SLD6P1Z8","SLK9R5M3","SLX2S7J4","SLT8F6Q9","SLA4P2H7","SLQ7L8V5","SLN2R9B6","SLS6Z4T3",
+  "SLJ1W8K5","SLB9P4M7","SLM5X2R8","SLZ7T6H1","SLA3K9S5","SLV8R1B4","SLS4M7W2","SLN6X9Q3","SLJ8Z5H7","SLB2R6X1",
+  "SLR7K3S9","SLW5Q8L4","SLD9P6Z2","SLK1R5M8","SLX7S3J6","SLT4F9Q1","SLA8P2H5","SLQ6L4V9","SLN7R1B3","SLS2Z8T6",
+  "SLJ9W5K7","SLB4P3M2","SLM6X8R1","SLZ1T7H9","SLA5K2S8","SLV9R3B6","SLS7M1W4","SLN3X5Q9","SLJ2Z8H6","SLB6R9X4",
+  "SLR1K5S2","SLW8Q7L3","SLD5P4Z9","SLK6R2M7","SLX9S1J5","SLT7F3Q8","SLA2P9H4","SLQ1L8V6","SLN5R7B2","SLS9Z6T4",
+  "SLJ3W1K8","SLB8P6M5","SLM4X7R9","SLZ2T1H6","SLA9K5S3","SLV6R8B7","SLS1M9W2","SLN8X4Q6","SLJ5Z3H9","SLB7R2X8",
+  "SLR9K1S4","SLW2Q5L7","SLD8P3Z6","SLK4R9M2","SLX5S8J7","SLT1F2Q4","SLA6P7H9","SLQ3L5V1","SLN9R6B8","SLS4Z2T7",
+  "SLJ7W9K3","SLB1P8M6","SLM9X5R4","SLZ6T3H2","SLA4K1S7","SLV2R5B9","SLS8M6W3","SLN1X9Q5","SLJ6Z4H2","SLB3R8X1",
+  "SLR5K9S7","SLW4Q1L8","SLD2P6Z9","SLK7R3M4","SLX1S5J2","SLT9F8Q6","SLA7P4H1","SLQ9L2V8","SLN4R1B5","SLS6Z9T3",
+  "SLJ8W2K4","SLB5P9M7","SLM2X1R6","SLZ8T4H9","SLA1K6S5","SLV7R9B3","SLS3M4W8","SLN5X2Q1","SLJ9Z6H7","SLB4R5X3",
+  "SLR8K2S6","SLW6Q9L1","SLD1P7Z4","SLK2R8M9","SLX6S4J3","SLT5F1Q7","SLA9P8H2","SLQ4L7V5","SLN2R3B9","SLS1Z8T4",
+  "SLJ4W5K1","SLB9P2M8","SLM7X6R3","SLZ3T9H5","SLA8K4S2","SLV5R1B7","SLS9M2W6","SLN7X8Q4","SLJ1Z5H9","SLB6R3X2",
+  "SLR4K8S1","SLW7Q2L9","SLD9P1Z5","SLK5R4M6","SLX8S9J2","SLT3F7Q1","SLA2P6H8","SLQ8L1V3","SLN6R5B4","SLS5Z1T9",
+  "SLJ2W8K7","SLB3P4M1","SLM1X9R8","SLZ9T2H3","SLA6K7S4","SLV4R2B1","SLS5M9W8","SLN8X3Q7","SLJ7Z2H5","SLB9R6X8",
+  "SLR3K4S2","SLW1Q5L6","SLD7P8Z3","SLQ9X4R7","SLB2T6Z1","SLC8M5K9","SLW3D7P2","SLN6R1H4","SLZ5S9J8","SLF4Q2X6",
+  "SLK7L3B9","SLV1Z8M5","SLA9P6T4","SLR2H7W3","SLM5X9D1","SLS8K4Q6","SLY3B2R7","SLT9F1Z5","SLJ6M4X8","SLD2W7K9",
+  "SLP5R8H3","SLX1S4T6","SLG9L2B7","SLH4Q8Z1","SLC7P5R9","SLN2T6X4","SLW9D3M8","SLA1R5K7","SLZ6H4B9","SLF8S2Q3",
+  "SLM7L9P5","SLK3X6R1","SLV5T8Z2","SLS9D4W7","SLJ2Q1H6","SLB8R7X3","SLT4M9K5","SLP1Z6S2","SLY7F3D8","SLG5R9Q4",
+  "SLN3B1T7","SLW6X8H2","SLC9M4R5","SLK1S7Z3","SLA8Q2D9","SLR5T6B4","SLF3X9P7","SLM2W8K1","SLZ7H5R6","SLJ9D4S3",
+  "SLP6Q1B8","SLX4R7T2","SLG8K9Z5","SLH1M6D3","SLC5R8Q7","SLN9X2P4","SLW7T5B1","SLA4H8Z9","SLK6R2S3","SLV1D5Q7",
+  "SLS8X4M9","SLF2P6R1","SLM9Z7K5","SLJ3T8H4","SLB5Q9D6","SLR7X1W2","SLP4S9T8","SLY6B2R5","SLG1K7M3","SLN4D9X8",
+  "SLW2H6Q5","SLC7T1Z4","SLK9R5D2","SLA3M8X6","SLR1S4B9","SLF5Q7T2","SLM6H9Z8","SLZ4D3P1","SLJ8X2R5","SLP2K6Q9",
+  "SLX7T4M1","SLG3R9D8","SLH6S5Z2","SLC1Q4B7","SLN8R2T9","SLW5D7X6","SLA9K1M4","SLK4S8Z3","SLV7Q2D5","SLS1M9R6",
+  "SLF6X3T8","SLM4Z5K7","SLJ9D2P3","SLB7R1Q8","SLR5T4X6","SLP8S2H9","SLY1K9B4","SLG6M5R7","SLN3X8D2","SLW9Q1T6",
+  "SLC4R7H5","SLK2Z6D8","SLA7T3M9","SLR8S1B4","SLF9Q5X2","SLM1H7Z6","SLZ2D9P5","SLJ4X6R3","SLP9K2Q7","SLX5T8M1",
+  "SLG7R3D9","SLH2S6Z4","SLC9Q1B5","SLN5R8T3","SLW6D4X7","SLA2K9M1","SLK8S5Z6","SLV4Q7D2","SLS9M1R8","SLF3X5T4",
+  "SLM7Z9K2","SLJ1D8P6","SLB9R4Q3","SLR2T7X5","SLP6S8H1","SLY5K3B9","SLG4M1R6","SLN7X2D5","SLW1Q9T8","SLC3R6H7",
+  "SLK5Z4D1","SLA9T2M8","SLR6S3B7","SLF8Q1X9","SLM2H5Z3","SLZ7D4P6","SLJ3X9R1","SLP5K8Q2","SLX1T7M4","SLG9R5D6",
+  "SLH4S1Z8","SLC2Q7B3","SLN1R9T5","SLW8D6X4","SLA5K7M9","SLK3S2Z1","SLV9Q4D8","SLS4M6R2","SLF1X8T7","SLM5Z3K9",
+  "SLJ7D6P4","SLB1R8Q5","SLR9T2X3","SLP4S5H7","SLY2K6B8","SLG8M9R1","SLN6X4D3","SLW3Q5T9","SLC8R1H2","SLK1Z9D6",
+  "SLA4T7M5","SLR3S8B9","SLF6Q2X4","SLM8H1Z7","SLZ5D9P2","SLJ2X4R8","SLP7K1Q5","SLX9T3M6","SLG5R8D1","SLH7S2Z9",
+  "SLC4Q6B8","SLN2R5T1","SLW7D9X3","SLA1K4M6","SLK9S7Z2","SLV2Q8D5","SLS6M3R7","SLF9X1T4","SLM3Z8K5","SLJ6D2P9",
+  "SLB4R7Q1","SLR1T5X8","SLP8S9H3","SLY9K4B6","SLG2M7R5","SLN9X6D8","SLW4Q3T1","SLC6R5H9","SLK7Z2D4","SLA8T1M3",
+  "SLR4S9B2","SLF2Q8X7","SLM9H3Z1","SLZ1D5P8","SLJ5X7R4","SLP3K9Q6","SLX2T1M9","SLG1R4D5","SLH8S3Z6","SLC5Q9B1",
+  "SLN4R1T7","SLW2D8X5"
+    ];
+
+    function initHunt() {
+        const user = document.getElementById('username').value.trim();
+        if (user.length < 2) return alert("ENTER VALID IG HANDLE");
+        localStorage.setItem('mefcc_user', user);
+        document.getElementById('auth-section').style.display = 'none';
+        document.getElementById('game-area').style.display = 'block';
+        if (localStorage.getItem('mefcc_finished')) { showFinal(); } 
+        else { document.getElementById('sec0').classList.add('active'); }
+    }
+
+    function validate(index) {
+        const input = document.getElementById(`in${index}`);
+        const val = input.value.toLowerCase().trim();
+        if (val === keys[index]) {
+            input.disabled = true;
+            document.getElementById(`st${index}`).style.display = "block";
+            document.getElementById(`sec${index}`).classList.add('completed');
+            if (index < keys.length - 1) {
+                const nextSec = document.getElementById(`sec${index + 1}`);
+                nextSec.classList.add('active');
+                document.getElementById(`in${index+1}`).focus();
+            } else {
+                completeHunt();
+            }
+        }
+    }
+
+    async function completeHunt() {
+        localStorage.setItem('mefcc_finished', 'true');
+        let code = localStorage.getItem('mefcc_final_code');
+        if (!code) {
+            code = secretPool[Math.floor(Math.random() * secretPool.length)];
+            localStorage.setItem('mefcc_final_code', code);
+            
+            const username = localStorage.getItem('mefcc_user');
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, code })
+            });
+        }
+        showFinal();
+    }
+
+    function showFinal() {
+        document.getElementById('game-area').style.display = 'none';
+        document.getElementById('user-display').innerText = localStorage.getItem('mefcc_user');
+        document.getElementById('display-secret').innerText = localStorage.getItem('mefcc_final_code');
+        document.getElementById('final-reveal').style.display = 'block';
+    }
+</script>
+</body>
+</html>
