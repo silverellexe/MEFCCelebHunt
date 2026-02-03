@@ -8,22 +8,19 @@
         :root { --marvel-red: #ED1D24; --marvel-black: #202020; --marvel-white: #FFFFFF; }
         body { background-color: var(--marvel-black); color: var(--marvel-white); font-family: 'Arial Black', Gadget, sans-serif; display: flex; justify-content: center; padding: 20px; text-transform: uppercase; }
         .terminal { width: 100%; max-width: 600px; border: 4px solid var(--marvel-red); padding: 20px; background: linear-gradient(145deg, #252525, #1a1a1a); box-shadow: 0 0 20px rgba(237, 29, 36, 0.3); }
-        h1 { background-color: var(--marvel-red); color: white; padding: 10px; text-align: center; font-size: 1.5rem; margin-top: 0; letter-spacing: 2px; }
-        .clue-section { border-left: 4px solid var(--marvel-red); margin-bottom: 25px; padding-left: 15px; display: none; transition: all 0.3s ease; }
+        h1 { background-color: var(--marvel-red); color: white; padding: 10px; text-align: center; font-size: 1.5rem; margin-top: 0; }
+        .clue-section { border-left: 4px solid var(--marvel-red); margin-bottom: 25px; padding-left: 15px; display: none; }
         .clue-section.active { display: block; animation: fadeIn 0.5s; }
         .clue-section.completed { opacity: 0.4; border-left-color: #555; }
         label { display: block; color: var(--marvel-red); margin-bottom: 5px; font-size: 0.8rem; font-weight: bold; }
-        p { font-size: 0.95rem; line-height: 1.5; margin: 10px 0; letter-spacing: 0.5px; }
+        p { font-size: 0.95rem; line-height: 1.5; margin: 10px 0; }
         input { background: #000; border: 2px solid var(--marvel-white); color: var(--marvel-white); padding: 12px; width: calc(100% - 28px); font-size: 1rem; outline: none; font-family: 'Courier New', monospace; }
-        input:focus { border-color: var(--marvel-red); box-shadow: 0 0 10px rgba(237, 29, 36, 0.5); }
+        input:focus { border-color: var(--marvel-red); }
         input:disabled { border-color: #444; color: #888; cursor: not-allowed; }
-        button { background: var(--marvel-red); color: white; border: none; padding: 15px 20px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; font-family: inherit; font-size: 1.1rem; transition: background 0.2s; }
-        button:hover { background: #b31217; }
-        #final-reveal { display: none; background: var(--marvel-red); color: white; padding: 30px 20px; text-align: center; margin-top: 20px; border: 4px double white; animation: slideUp 0.6s; }
-        .secret-code { font-size: 2.2rem; display: block; margin: 20px 0; letter-spacing: 3px; border: 3px dashed white; padding: 15px; background: rgba(0,0,0,0.2); }
-        .status-msg { font-size: 0.75rem; color: #00ff00; margin-top: 8px; font-weight: bold; display: none; }
+        button { background: var(--marvel-red); color: white; border: none; padding: 15px 20px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; font-family: inherit; font-size: 1.1rem; }
+        #final-reveal { display: none; background: var(--marvel-red); color: white; padding: 30px 20px; text-align: center; margin-top: 20px; border: 4px double white; }
+        .secret-code { font-size: 2.2rem; display: block; margin: 20px 0; letter-spacing: 3px; border: 3px dashed white; padding: 15px; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -39,53 +36,97 @@
     </div>
 
     <div id="game-area" style="display:none;">
-        <div class="clue-section" id="sec0"><label>CLUE 1</label><p>A potential celebrity has landed in town. Where would a star land first?</p><input type="text" id="in0" placeholder="ENTER CODE" oninput="validate(0)"><div class="status-msg" id="st0">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec0">
+            <label>GATEWAY</label>
+            <p>If you found your first code on the map... enter it here to continue your journey.</p>
+            <input type="text" id="in0" placeholder="ENTER FIRST CODE" oninput="validate(0)">
+        </div>
         
-        <div class="clue-section" id="sec1"><label>CLUE 2</label><p>You found traces of him but he is gone again. The tyres are burst. Where would they go to fix it?</p><input type="text" id="in1" placeholder="ENTER CODE" oninput="validate(1)"><div class="status-msg" id="st1">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec1">
+            <label>THE BREAKDOWN</label>
+            <p>You’ve found traces of bun with the celebrity… but he’s gone again. A security guard says Bun sped off with him in a car but it broke down. The tyres are burst. Where would they go to fix it? A shop? A garage? A store? Find the place that deals with wheels.</p>
+            <input type="text" id="in1" placeholder="ENTER CODE" oninput="validate(1)">
+        </div>
 
-        <div class="clue-section" id="sec2"><label>CLUE 3</label><p>They abandoned the car and took another way out. Run to the stop and catch them.</p><input type="text" id="in2" placeholder="ENTER CODE" oninput="validate(2)"><div class="status-msg" id="st2">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec2">
+            <label>THE ESCAPE</label>
+            <p>You just missed them. They abandoned the car and took another way out. What could that be? Run to the stop and catch them.</p>
+            <input type="text" id="in2" placeholder="ENTER CODE" oninput="validate(2)">
+        </div>
 
-        <div class="clue-section" id="sec3"><label>CLUE 4</label><p>The bus just left. Find where you would go to shop for new cars.</p><input type="text" id="in3" placeholder="ENTER CODE" oninput="validate(3)"><div class="status-msg" id="st3">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec3">
+            <label>NEW WHEELS</label>
+            <p>The bus just left. Someone said Bun was heading to buy a new ride. Who gave him money? Find where you’d go to shop for cars.</p>
+            <input type="text" id="in3" placeholder="ENTER CODE" oninput="validate(3)">
+        </div>
 
-        <div class="clue-section" id="sec4"><label>CLUE 5</label><p>He loves his maple roast. Follow the smell.</p><input type="text" id="in4" placeholder="ENTER CODE" oninput="validate(4)"><div class="status-msg" id="st4">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec4">
+            <label>THE SCENT</label>
+            <p>You spot them driving off in something sleek. As they pass, you overhear one thing: coffee. He loves his maple roast. Follow the smell.</p>
+            <input type="text" id="in4" placeholder="ENTER CODE" oninput="validate(4)">
+        </div>
 
-        <div class="clue-section" id="sec5"><label>CLUE 6</label><p>A beach towel and a surfboard in the back seat. Where would they be headed?</p><input type="text" id="in5" placeholder="ENTER CODE" oninput="validate(5)"><div class="status-msg" id="st5">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec5">
+            <label>THE CARGO</label>
+            <p>You made it — barely. They’ve left, but you see something in the back seat: a beach towel and a surfboard. Where would they be headed?</p>
+            <input type="text" id="in5" placeholder="ENTER CODE" oninput="validate(5)">
+        </div>
 
-        <div class="clue-section" id="sec6"><label>CLUE 7</label><p>The lifeguard mentions something about horses. Follow the trail.</p><input type="text" id="in6" placeholder="ENTER CODE" oninput="validate(6)"><div class="status-msg" id="st6">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec6">
+            <label>THE COAST</label>
+            <p>The sun is blazing. Bun spots you and hops back into the car. You ask the lifeguard where they went — he mentions something about horses. Follow the trail.</p>
+            <input type="text" id="in6" placeholder="ENTER CODE" oninput="validate(6)">
+        </div>
 
-        <div class="clue-section" id="sec7"><label>CLUE 8</label><p>You find the stables but only yellow footprints and a tag left behind. Take the date and move fast.</p><input type="text" id="in7" placeholder="ENTER CODE" oninput="validate(7)"><div class="status-msg" id="st7">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec7">
+            <label>THE STABLES</label>
+            <p>You find the stables — but no Bun. Only yellow footprints and a tag left behind. Take the date and move fast.</p>
+            <input type="text" id="in7" placeholder="ENTER CODE" oninput="validate(7)">
+        </div>
 
-        <div class="clue-section" id="sec8"><label>CLUE 9</label><p>Bun left a note: "Let us get relaxed and hang out." Where do people go to unwind?</p><input type="text" id="in8" placeholder="ENTER CODE" oninput="validate(8)"><div class="status-msg" id="st8">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec8">
+            <label>THE FOOTPRINTS</label>
+            <p>They were here moments ago. You spot fresh footprints, then nothing. Bun left a note: “I’m tired, my friend… let’s get relaxed and hang out.” Where do people go to unwind?</p>
+            <input type="text" id="in8" placeholder="ENTER CODE" oninput="validate(8)">
+        </div>
 
-        <div class="clue-section" id="sec9"><label>CLUE 10</label><p>Message in the mirror: "Wanna play a game? The mission is to play." Find the arena.</p><input type="text" id="in9" placeholder="ENTER CODE" oninput="validate(9)"><div class="status-msg" id="st9">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec9">
+            <label>THE REFLECTION</label>
+            <p>You reached the right place. Bun left you a message in the mirror: “Wanna play a game? The mission is to play.” Find the arena.</p>
+            <input type="text" id="in9" placeholder="ENTER CODE" oninput="validate(9)">
+        </div>
 
-        <div class="clue-section" id="sec10"><label>CLUE 11</label><p>He went shopping for snacks. Find him fast. Grab what he grabbed.</p><input type="text" id="in10" placeholder="ENTER CODE" oninput="validate(10)"><div class="status-msg" id="st10">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec10">
+            <label>THE ARENA</label>
+            <p>You made it to the arena… but Bun has already left. According to staff, he went shopping for snacks. Find him — fast. Grab what he grabbed.</p>
+            <input type="text" id="in10" placeholder="ENTER CODE" oninput="validate(10)">
+        </div>
 
-        <div class="clue-section" id="sec11"><label>CLUE 12</label><p>His phone has no internet. Where would he go to get online?</p><input type="text" id="in11" placeholder="ENTER CODE" oninput="validate(11)"><div class="status-msg" id="st11">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec11">
+            <label>THE SNACK</label>
+            <p>This time you see Bun in the distance. You call out: “SIGN THE CONTRACT!” He nods… then drops his phone. But his phone has no internet. Where would he go to get online?</p>
+            <input type="text" id="in11" placeholder="ENTER CODE" oninput="validate(11)">
+        </div>
 
-        <div class="clue-section" id="sec12"><label>CLUE 13</label><p>They are heading to the final destination for 24 April. Find your way there.</p><input type="text" id="in12" placeholder="ENTER CODE" oninput="validate(12)"><div class="status-msg" id="st12">ACCESS GRANTED</div></div>
+        <div class="clue-section" id="sec12">
+            <label>THE UPLINK</label>
+            <p>Contract signed. Good job, Bun. They’re heading to the final destination — the place where the star will be spotted on 24 April. Find your way there.</p>
+            <input type="text" id="in12" placeholder="ENTER CODE" oninput="validate(12)">
+        </div>
     </div>
 
     <div id="final-reveal">
         MISSION ACCOMPLISHED<br>
         AGENT <span id="user-display"></span>, YOUR UNIQUE CODE:<br>
         <span class="secret-code" id="display-secret">########</span>
-        <p style="font-size: 0.75rem; border-top: 1px solid white; padding-top: 10px;">COMMENT THIS CODE ON OUR INSTAGRAM POST TO COMPLETE YOUR ENTRY.</p>
+        <p style="font-size: 0.75rem;">COMMENT THIS ON INSTAGRAM TO FINISH.</p>
     </div>
 </div>
 
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzdP-RpdY3TNhYAUvtiZFXGsPMQoz-pGn0xoXXT9U-N4XE9tqXh92lWAJMkVWUZNkaH5g/exec";
-    
-    // Exact keys as per your instructions
-    const keys = [
-        "cx711", "unit4", "sl404", "bus m-901", "model no. a6", 
-        "maple88", "sunhorse", "21-07", "jordan 23", "reflect-7", 
-        "1723", "kim-47", "drg-19"
-    ];
-
-    const secretPool = [
-        "SL9K7R3X","SLX4P8Z2","SLM1Q9B6","SLT6W5J8","SLK8D2H9","SLB3S8L7","SLC7R6V4","SLY2K9T5","SLH6Q4Z3","SLR5B7N8",
+    const keys = ["cx711", "unit4", "sl404", "bus m-901", "model no. a6", "maple88", "sunhorse", "21-07", "jordan 23", "reflect-7", "1723", "kim-47", "drg-19"];
+    const secretPool = [""SL9K7R3X","SLX4P8Z2","SLM1Q9B6","SLT6W5J8","SLK8D2H9","SLB3S8L7","SLC7R6V4","SLY2K9T5","SLH6Q4Z3","SLR5B7N8",
   "SLD9M2J1","SLF4T8K6","SLB7Z5H3","SLC2L3Q9","SLJ8P9V5","SLZ5W6R1","SLA3H8F2","SLN6X1B9","SLS4K7J5","SLC8W3D2",
   "SLV2L9R7","SLQ6S5M4","SLD3Z2P8","SLH9R6T1","SLW1K4L5","SLR7J8S2","SLT4D3H9","SLZ8Q5V6","SLC2M7B3","SLF5W9Z4",
   "SLX4T6K8","SLB9P2H7","SLJ6L9Q3","SLM2X5V8","SLZ8H7B4","SLQ5R1J6","SLN4D8K2","SLS7M3H9","SLW1Z6R5","SLK8L2Q7",
@@ -124,12 +165,11 @@
   "SLC4Q6B8","SLN2R5T1","SLW7D9X3","SLA1K4M6","SLK9S7Z2","SLV2Q8D5","SLS6M3R7","SLF9X1T4","SLM3Z8K5","SLJ6D2P9",
   "SLB4R7Q1","SLR1T5X8","SLP8S9H3","SLY9K4B6","SLG2M7R5","SLN9X6D8","SLW4Q3T1","SLC6R5H9","SLK7Z2D4","SLA8T1M3",
   "SLR4S9B2","SLF2Q8X7","SLM9H3Z1","SLZ1D5P8","SLJ5X7R4","SLP3K9Q6","SLX2T1M9","SLG1R4D5","SLH8S3Z6","SLC5Q9B1",
-  "SLN4R1T7","SLW2D8X5"
-    ];
+  "SLN4R1T7","SLW2D8X5"];
 
     function initHunt() {
         const user = document.getElementById('username').value.trim();
-        if (user.length < 2) return alert("ENTER VALID IG HANDLE");
+        if (user.length < 2) return alert("ENTER VALID HANDLE");
         localStorage.setItem('mefcc_user', user);
         document.getElementById('auth-section').style.display = 'none';
         document.getElementById('game-area').style.display = 'block';
@@ -139,14 +179,11 @@
 
     function validate(index) {
         const input = document.getElementById(`in${index}`);
-        const val = input.value.toLowerCase().trim();
-        if (val === keys[index]) {
+        if (input.value.toLowerCase().trim() === keys[index]) {
             input.disabled = true;
-            document.getElementById(`st${index}`).style.display = "block";
             document.getElementById(`sec${index}`).classList.add('completed');
             if (index < keys.length - 1) {
-                const nextSec = document.getElementById(`sec${index + 1}`);
-                nextSec.classList.add('active');
+                document.getElementById(`sec${index + 1}`).classList.add('active');
                 document.getElementById(`in${index+1}`).focus();
             } else {
                 completeHunt();
@@ -160,14 +197,8 @@
         if (!code) {
             code = secretPool[Math.floor(Math.random() * secretPool.length)];
             localStorage.setItem('mefcc_final_code', code);
-            
             const username = localStorage.getItem('mefcc_user');
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, code })
-            });
+            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, code }) });
         }
         showFinal();
     }
